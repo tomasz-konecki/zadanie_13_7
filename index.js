@@ -4,7 +4,7 @@ var fs = require('fs'),
     files = [],
     dir = './folder_to_check';
 
-fs.readdir(dir, 'utf-8', function(err, data) {
+fs.readdir(dir, function(err, data) {
     if (err) throw err;
     console.log(`\nContents of ${dir.substr(2).magenta}:\n`);
     
