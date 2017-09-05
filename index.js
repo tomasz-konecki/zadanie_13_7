@@ -2,7 +2,8 @@ var fs = require('fs'),
     colors = require('colors'),
     folders = [],
     files = [],
-    dir = './folder_to_check';
+    dir = './folder_to_check',
+    fileToWrite = './contents.txt';
 
 fs.readdir(dir, function(err, data) {
     if (err) throw err;
@@ -25,4 +26,18 @@ fs.readdir(dir, function(err, data) {
     });
 
     console.log(`\nThere are ${folders.length} folders and ${files.length} files in directory: ${dir.substr(2).magenta}.`.yellow);
+
+    fs.writeFile(fileToWrite, `Contents of ${dir}:\r\n`, (err) => {
+        if (err) {
+            throw err;
+        } else {
+            (folders.concat(files))
+            .forEach((item) => {
+                fs.appendFile(fileToWrite, `${item}\r\n`, (err) => {
+                    if (err) throw err;
+                });
+            });
+        }
+    });
+
 });
