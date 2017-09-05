@@ -5,6 +5,11 @@ var fs = require('fs'),
     dir = './folder_to_check',
     fileToWrite = './contents.txt';
 
+    colors.setTheme({
+        info: 'green',
+        help: 'cyan'
+    });
+
 fs.readdir(dir, function(err, data) {
     if (err) throw err;
     console.log(`\nContents of ${dir.substr(2).magenta}:\n`);
@@ -16,16 +21,17 @@ fs.readdir(dir, function(err, data) {
             folders.push(item);
         }
     });
+};
 
-    folders.forEach((item) => {
-        console.log(item.cyan);
-    });
+displayContents(folders);
+displayContents(files);
 
-    files.forEach((item) => {
-        console.log(item.green);
-    });
+console.log(`\nThere are ${folders.length} folders and ${files.length} files in directory: ${dir.substr(2).magenta}.`.yellow);
 
-    console.log(`\nThere are ${folders.length} folders and ${files.length} files in directory: ${dir.substr(2).magenta}.`.yellow);
+saveToFile();
+
+
+function saveToFile () {
 
     fs.writeFile(fileToWrite, `Contents of ${dir}:\r\n`, (err) => {
         if (err) {
@@ -40,4 +46,17 @@ fs.readdir(dir, function(err, data) {
         }
     });
 
-});
+};
+
+
+function displayContents(type) {
+    type.forEach((item) => {
+        switch (type) {
+            case folders:
+                console.log(item.green);
+                break;
+            default:
+                console.log(item.cyan);
+    }
+    });
+}
