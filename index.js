@@ -8,7 +8,7 @@ var fs = require('fs'),
 fs.readdir(dir, function(err, data) {
     if (err) throw err;
     console.log(`\nContents of ${dir.substr(2).magenta}:\n`);
-    
+
     data.forEach((item) => {
         if (item.includes('.')) {
             files.push(item);
@@ -17,15 +17,15 @@ fs.readdir(dir, function(err, data) {
         }
     });
 
-displayContents(folders);
-displayContents(files);
-saveToFile(folders.concat(files));
+    displayContents(folders);
+    displayContents(files);
+    saveToFile(folders.concat(files));
 
 });
 
-function saveToFile (dirContent) {
+function saveToFile(dirContent) {
 
-console.log(`\nThere are ${folders.length} folders and ${files.length} files in directory: ${dir.substr(2).magenta}.`.yellow);
+    console.log(`\nThere are ${folders.length} folders and ${files.length} files in directory: ${dir.substr(2).magenta}.`.yellow);
 
     fs.writeFile(fileToWrite, `Contents of '${dir}':\r\n`, (err) => {
         if (err) {
@@ -38,8 +38,8 @@ console.log(`\nThere are ${folders.length} folders and ${files.length} files in 
             });
         }
     });
-    
-console.log(`\nContents saved to file '${fileToWrite.substr(2)}'`.red);
+
+    console.log(`\nContents saved to file '${fileToWrite.substr(2)}'`.red);
 
 };
 
