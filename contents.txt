@@ -1,0 +1,9 @@
+Contents of './folder_to_check':
+folder_1
+folder_2
+folder_3
+cat.jpg
+file_1.txt
+file_2.txt
+file_3.txt
+file_4.txt

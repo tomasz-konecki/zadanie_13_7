@@ -5,11 +5,6 @@ var fs = require('fs'),
     dir = './folder_to_check',
     fileToWrite = './contents.txt';
 
-    colors.setTheme({
-        info: 'green',
-        help: 'cyan'
-    });
-
 fs.readdir(dir, function(err, data) {
     if (err) throw err;
     console.log(`\nContents of ${dir.substr(2).magenta}:\n`);
@@ -21,30 +16,30 @@ fs.readdir(dir, function(err, data) {
             folders.push(item);
         }
     });
-};
+
 
 displayContents(folders);
 displayContents(files);
+saveToFile(folders.concat(files));
+
+
+function saveToFile (dirContent) {
 
 console.log(`\nThere are ${folders.length} folders and ${files.length} files in directory: ${dir.substr(2).magenta}.`.yellow);
 
-saveToFile();
-
-
-function saveToFile () {
-
-    fs.writeFile(fileToWrite, `Contents of ${dir}:\r\n`, (err) => {
+    fs.writeFile(fileToWrite, `Contents of '${dir}':\r\n`, (err) => {
         if (err) {
             throw err;
         } else {
-            (folders.concat(files))
-            .forEach((item) => {
+            dirContent.forEach((item) => {
                 fs.appendFile(fileToWrite, `${item}\r\n`, (err) => {
                     if (err) throw err;
                 });
             });
         }
     });
+    
+console.log(`\nContents saved to file '${fileToWrite.substr(2)}'`.red);
 
 };
 
@@ -57,6 +52,8 @@ function displayContents(type) {
                 break;
             default:
                 console.log(item.cyan);
-    }
+        }
     });
 }
+
+});
