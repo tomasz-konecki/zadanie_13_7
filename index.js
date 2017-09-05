@@ -17,11 +17,11 @@ fs.readdir(dir, function(err, data) {
         }
     });
 
-
 displayContents(folders);
 displayContents(files);
 saveToFile(folders.concat(files));
 
+});
 
 function saveToFile (dirContent) {
 
@@ -54,6 +54,4 @@ function displayContents(type) {
                 console.log(item.cyan);
         }
     });
-}
-
-});
+};
