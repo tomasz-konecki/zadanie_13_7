@@ -1,0 +1,19 @@
+{
+  "name": "zadanie_13_7",
+  "version": "1.0.0",
+  "description": "Node.js file system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomasz-konecki/zadanie_13_7.git"
+  },
+  "author": "Tomek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomasz-konecki/zadanie_13_7/issues"
+  },
+  "homepage": "https://github.com/tomasz-konecki/zadanie_13_7#readme"
+}
