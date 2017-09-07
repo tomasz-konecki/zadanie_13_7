@@ -5,7 +5,7 @@ var fs = require('fs'),
     dir = './folder_to_check',
     fileToWrite = './contents.txt';
 
-fs.readdir(dir, function(err, data) {
+fs.readdir(dir, (err, data) => {
     if (err) throw err;
     console.log(`\nContents of ${dir.substr(2).magenta}:\n`);
 
@@ -17,8 +17,8 @@ fs.readdir(dir, function(err, data) {
         }
     });
 
-    displayContents(folders);
-    displayContents(files);
+    displayContents(folders, 'green');
+    displayContents(files, 'cyan');
     saveToFile(folders.concat(files));
 
 });
@@ -43,15 +43,8 @@ function saveToFile(dirContent) {
 
 };
 
-
-function displayContents(type) {
+function displayContents (type, color) {
     type.forEach((item) => {
-        switch (type) {
-            case folders:
-                console.log(item.green);
-                break;
-            default:
-                console.log(item.cyan);
-        }
+        console.log(item[color]);
     });
 };
